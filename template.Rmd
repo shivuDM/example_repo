@@ -1,0 +1,61 @@
+---
+title: "Simple document"
+output: word_document
+  
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+I'm an R Markdown document! Creates a new session everytime you knit. Will add plot in the
+file.
+
+# Section 1
+
+Here's a **code chunk** that samples from 
+a _normal distribution_:
+
+```{r}
+samp = rnorm(100)
+length(samp)
+```
+
+# Section 2
+
+I can take the mean of the sample, too!
+The mean is `r mean(samp)`.
+
+# Section 3
+Going to make a plot. First I generate dataframe and then use 'ggplot' to make a scatterplot
+```{r chunk_scatterplot}
+plot_df = 
+  tibble (
+    x = rnorm(n=1000),
+    y = 1 + 2 * x + rnorm(n=1000)
+  )
+
+
+ggplot(plot_df, aes(x=x, y=y))+ geom_point()
+
+```
+
+
+#Section 4
+```{r chunk_histogram}
+la_df = 
+  tibble (
+    norm = rnorm (n = 500, mean = 1),
+    logical = norm > 0,
+    abs_norm = abs(norm)
+  )
+
+ggplot(la_df, aes(x=abs_norm)) + geom_histogram()
+```
+
+Here's a list:
+* list item 1
+* list item 2
+
+YAML stands for Yet Another Markup Language
